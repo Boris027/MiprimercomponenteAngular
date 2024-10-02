@@ -1,20 +1,53 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content [fullscreen]="true">
+
+
+<ion-content [fullscreen]="true" >
+
+  <ion-header [translucent]="true">
+    <ion-toolbar>
+      <ion-title>
+        Blank
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-toolbar id="formulario" style="margin-top: 20px;">
+    <form (ngSubmit)="anadircarta()" #formulario="ngForm">
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="inputnombre" name="inputnombre" id="inputnombre" required></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Apellidos</ion-label>
+        <ion-input [(ngModel)]="inputapellido" name="inputapellido" id="inputapellido" required></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="floating">Edad</ion-label>
+        <ion-input [(ngModel)]="inputedad" name="inputedad" id="inputedad" type="number" required></ion-input>
+      </ion-item>
+  
+      <ion-button type="submit" [disabled]="!formulario.valid" expand="block" id="boton">Añadir</ion-button>
+    </form>
+  </ion-toolbar>
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">Blank</ion-title>
     </ion-toolbar>
   </ion-header>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let person of people">
+        <app-personal-card 
+        [name]="person.name" 
+        [surname]="person.surname" 
+        [age]="person.age">
+        </app-personal-card>      
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
 </ion-content>
