@@ -1,14 +1,9 @@
 import { Component } from '@angular/core';
+import { PersonCard } from '../interfaces/personcard';
 
-export interface Person{
-  name:string,
-  surname:string,
-  age:number
-}
 
-export interface PersonCard extends Person{
-  favourite:boolean
-}
+
+
 
 @Component({
   selector: 'app-home',
