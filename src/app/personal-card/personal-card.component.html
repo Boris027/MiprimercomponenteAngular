@@ -11,6 +11,10 @@
           <ion-col >
             <ion-text color="dark">{{name}} {{surname | slice:0:1 | uppercase}}.</ion-text>
           </ion-col>
+          <ion-button fill="clear" id="button-like" (click)="sendoutput()">
+            <ion-icon slot="icon-only" name="heart" *ngIf="favourite" color="danger" ></ion-icon>
+            <ion-icon slot="icon-only" name="heart-outline" *ngIf="!favourite" color="medium"></ion-icon>
+          </ion-button>
         </ion-row>
       </ion-grid>
     </ion-card-title>
@@ -26,4 +30,5 @@
       <ion-input label="Edad" type="text" placeholder="Edad" labelPlacement="floating" [value]="age+' años'" readonly></ion-input>
     </ion-item>
   </ion-card-content>
+  <ion-button  id="button-delete" (click)="deletethis()" >Eliminar</ion-button>
 </ion-card>

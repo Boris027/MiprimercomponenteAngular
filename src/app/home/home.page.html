@@ -39,11 +39,14 @@
   </ion-header>
   <ion-grid>
     <ion-row>
-      <ion-col *ngFor="let person of people">
+      <ion-col *ngFor="let person of people;let numero=index">
         <app-personal-card 
         [name]="person.name" 
         [surname]="person.surname" 
-        [age]="person.age">
+        [age]="person.age"
+        [favourite]="person.favourite"
+        (newItemEvent)="llegadehijo($event,numero)"
+        >
         </app-personal-card>      
       </ion-col>
     </ion-row>
