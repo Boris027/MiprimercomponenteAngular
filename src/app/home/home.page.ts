@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PersonCard } from '../interfaces/personcard';
 import { PersonService } from '../shared/services/person.service';
+import { Person } from '../interfaces/person';
 
 
 
@@ -20,6 +21,14 @@ export class HomePage {
   inputedad:string=""
 
   constructor(private personservice:PersonService) {
+    personservice.observableperson.subscribe(
+      (value:Person[])=>{
+        this.people=[]
+        for(let a of value){
+          this.people.push({id:a.id,age:a.age,name:a.name,surname:a.surname,favourite:false})
+        }
+      }
+    )
   }
 
   anadircarta(){
@@ -46,21 +55,22 @@ export class HomePage {
   }
 
 
-  llegadehijo(evento:any,index:number){
+  llegadehijo(evento:any,persona:PersonCard){
+    let personafinal:Person={id:persona.id,name:persona.name,surname:persona.surname,age:persona.age}
     if(evento=="changebutton"){
-      this.actualizarcorazon(index)
+      this.actualizarcorazon(persona)
     }else if(evento=="deletethis"){
-      this.eliminarpersona(index)
+      this.eliminarpersona(persona)
     }
   }
 
-  actualizarcorazon(index:number){
-    this.people[index].favourite=!this.people[index].favourite
+  actualizarcorazon(persona:PersonCard){
+    persona.favourite=!persona.favourite
   }
 
-  eliminarpersona(index:number){
-    this.people.splice(index,1)
+  eliminarpersona(persona:Person){
     
+    this.personservice.delete(persona)
   }
 
 

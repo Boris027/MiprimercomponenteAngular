@@ -19,20 +19,38 @@ export class PersonService implements personservice<Person> {
     persona.id=this.id.toString();
     this.id+=1;
     array.push(persona)
-
+    this.behaviourperson.next(array)
     return persona
   }
   delete(persona: Person): Person {
-    throw new Error('Method not implemented.');
+    
+    let array:Person[]=this.behaviourperson.getValue()
+    let index=array.findIndex(c=>c.id==persona.id)
+    
+    let devolver:Person=array[index]
+    array.splice(index,1)
+    this.behaviourperson.next(array)
+
+    return devolver
+    
   }
+
   update(persona: Person): Person {
-    throw new Error('Method not implemented.');
+    let array:Person[]=this.behaviourperson.getValue()
+    let index=array.findIndex(c=>c.id==persona.id)
+    array[index]=persona
+    this.behaviourperson.next(array)
+    return persona
   }
+  
   seachbyid(id: Person): Person {
     throw new Error('Method not implemented.');
   }
-  getall(): Person {
-    throw new Error('Method not implemented.');
+
+
+  getall(): Person[] {
+    let array:Person[]=this.behaviourperson.getValue()
+    return array
   }
 
 

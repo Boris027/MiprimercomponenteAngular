@@ -4,5 +4,5 @@ export interface personservice<T>{
     delete(persona:T):T
     update(persona:T):T
     seachbyid(id:T):T
-    getall():T
+    getall():T[]
 }
