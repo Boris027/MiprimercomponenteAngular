@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PersonCard } from '../interfaces/personcard';
+import { PersonService } from '../shared/services/person.service';
 
 
 
@@ -18,33 +19,7 @@ export class HomePage {
   inputapellido:string=""
   inputedad:string=""
 
-  constructor() {
-    this.people.push({
-      name:"Juan A.",
-      surname:"García Gómez",
-      age:47,
-      favourite:false
-    });
-    this.people.push({
-      name:"Alejandro.",
-      surname:"García Gómez",
-      age:46,
-      favourite:true
-    });
-
-    this.people.push({
-      name:"Juan",
-      surname:"García Valencia",
-      age:5,
-      favourite:false
-    });
-
-    this.people.push({
-      name:"María del Mar",
-      surname:"Valencia Valencia",
-      age:47,
-      favourite:false
-    });
+  constructor(private personservice:PersonService) {
   }
 
   anadircarta(){
@@ -61,7 +36,7 @@ export class HomePage {
         throw Error
       }
     
-      this.people.push({name:this.inputnombre,age:parseInt(this.inputedad),surname:this.inputapellido,favourite:false})
+      this.personservice.add({id:"",name:this.inputnombre,surname:this.inputapellido,age:edad})
       this.inputnombre=""
       this.inputapellido=""
       this.inputedad=""

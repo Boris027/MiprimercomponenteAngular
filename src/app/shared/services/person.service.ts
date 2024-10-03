@@ -9,11 +9,18 @@ import { personservice } from 'src/app/interfaces/personservice';
 export class PersonService implements personservice<Person> {
 
   constructor() { }
+  private id:number=1
   private behaviourperson:BehaviorSubject<Person[]> =new BehaviorSubject<Person[]>([])
-  public observableperso:Observable<Person[]> = this.behaviourperson.asObservable()
-  
+  public observableperson:Observable<Person[]> = this.behaviourperson.asObservable()
+
   add(persona: Person): Person {
-    throw new Error('Method not implemented.');
+
+    let array=this.behaviourperson.getValue()
+    persona.id=this.id.toString();
+    this.id+=1;
+    array.push(persona)
+
+    return persona
   }
   delete(persona: Person): Person {
     throw new Error('Method not implemented.');
